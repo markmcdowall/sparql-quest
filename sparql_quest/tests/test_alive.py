@@ -47,8 +47,8 @@ def test_age_query():
     tb_age = relativedelta(today, datetime.strptime('1953-05-06', '%Y-%m-%d'))
 
     su_handle = sparql_util()
-    assert su_handle._get_age('Tony Blair') == tb_age.years
-    assert su_handle._get_age('David Cameron') == dc_age.years
+    assert su_handle._get_age('Tony Blair') == tb_age.years  # pylint: disable=protected-access
+    assert su_handle._get_age('David Cameron') == dc_age.years  # pylint: disable=protected-access
 
 
 @pytest.mark.birthname
@@ -58,8 +58,8 @@ def test_birthname_query():
     """
     print("Get Birth Name")
     su_handle = sparql_util()
-    assert su_handle._get_birth_name('Tony Blair') == 'Anthony Charles Lynton Blair'
-    assert su_handle._get_birth_name('David Cameron') == 'David William Donald Cameron'
+    assert su_handle._get_birth_name('Tony Blair') == 'Anthony Charles Lynton Blair'  # pylint: disable=protected-access
+    assert su_handle._get_birth_name('David Cameron') == 'David William Donald Cameron'  # pylint: disable=protected-access
 
 
 @pytest.mark.scibite
