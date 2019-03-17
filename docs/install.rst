@@ -41,11 +41,15 @@ Directly from GitHub:
 .. code-block:: none
    :linenos:
 
-   git clone https://github.com/markmcdowall/sparql_quest.git
+   git clone https://github.com/markmcdowall/sparql-quest.git
+   cd sparql-quest
+   pip install -e .
+   pip install -r requirements.txt
+
 
 Using pip:
 
 .. code-block:: none
    :linenos:
 
-   pip install git+https://github.com/markmcdowall/sparql_quest.git
+   pip install git+https://github.com/markmcdowall/sparql-quest.git
