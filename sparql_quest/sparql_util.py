@@ -68,9 +68,11 @@ class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
 
         for pattern in re_list:
             m = re_list[pattern].match(question)
+
             if m and pattern == 'age':
                 return self._get_age(m.group(1))
-            elif m and pattern == 'name':
+
+            if m and pattern == 'name':
                 return self._get_birth_name(m.group(1))
 
         return True

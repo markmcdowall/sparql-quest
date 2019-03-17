@@ -70,4 +70,6 @@ def test_do_sparql_query():
     su_handle = sparql_util()
     assert su_handle.do_sparql_query("How old is David Cameron") == 52
     assert su_handle.do_sparql_query("How old is Tony Blair") == 65
-    assert su_handle.do_sparql_query("What is the birth name of Tony Blair ?") == "Anthony Charles Lynton Blair"
+    assert su_handle.do_sparql_query(
+        "What is the birth name of Tony Blair ?"
+    ) == "Anthony Charles Lynton Blair"
