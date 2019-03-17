@@ -18,13 +18,13 @@
 from __future__ import print_function
 
 from datetime import datetime
-import requests
 import re
+import requests
 
 from dateutil.relativedelta import relativedelta
 
 
-class sparql_util(object):  # pylint: disable=invalid-name
+class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
     """
     Tool for running indexers over a genome FASTA file
     """
@@ -91,7 +91,11 @@ class sparql_util(object):  # pylint: disable=invalid-name
         """
 
         name_query = person.replace(' ', '_')
-        url_query = self.common_url + 'SELECT+?dob+FROM+<http://dbpedia.org>+WHERE+{dbr:' + name_query + '+dbp:birthDate+?dob+.+}+LIMIT+1'
+        url_query = self.common_url + (
+            'SELECT+?dob+FROM+<http://dbpedia.org>+WHERE+{dbr:'
+            + name_query
+            + '+dbp:birthDate+?dob+.+}+LIMIT+1'
+        )
 
         try:
             req = requests.get(url_query, headers=self.common_headers)
@@ -104,7 +108,8 @@ class sparql_util(object):  # pylint: disable=invalid-name
             age = relativedelta(today, born)
             return age.years
 
-        except:
+        except requests.exceptions.RequestException as err:
+            print(err)
             return False
 
         return False
@@ -124,12 +129,18 @@ class sparql_util(object):  # pylint: disable=invalid-name
             Full name of the person when they were born
         """
         name_query = person.replace(' ', '_')
-        url_query = self.common_url + 'SELECT+?name+FROM+<http://dbpedia.org>+WHERE+{dbr:' + name_query + '+?p+?name+.+dbr:' + name_query + '+?p+?name+.+FILTER+(?p+IN+(dbp:birthname,+dbp:birthName)+)}+LIMIT+1'
+        url_query = self.common_url + (
+            'SELECT+?name+FROM+<http://dbpedia.org>+WHERE+{dbr:' + name_query
+            + '+?p+?name+.+dbr:' + name_query
+            + '+?p+?name+.+FILTER+(?p+IN+(dbp:birthname,+dbp:birthName)+)}+LIMIT+1'
+        )
 
         try:
             req = requests.get(url_query, headers=self.common_headers)
             req_json = req.json()
             return req_json['results']['bindings'][0]['name']['value']
-        except:
-            return False
+
+        except requests.exceptions.RequestException as err:
+            print(err)
+
         return False
