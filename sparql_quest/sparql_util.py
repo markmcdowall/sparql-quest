@@ -47,7 +47,7 @@ class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
             'Accept': 'application/json'
         }
 
-        self.common_url = 'http://live.dbpedia.org/sparql/sparql?query='
+        self.common_url = 'http://live.dbpedia.org/sparql/sparql?'
 
     def do_sparql_query(self, question):
         """
@@ -55,10 +55,8 @@ class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
 
         Parameters
         ----------
-        file_loc : str
-            Location of the genome assembly FASTA file
-        idx_loc : str
-            Location of the output index file
+        question : str
+            Question to ask
         """
 
         re_list = {
@@ -94,7 +92,7 @@ class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
 
         name_query = person.replace(' ', '_')
         url_query = self.common_url + (
-            'SELECT+?dob+FROM+<http://dbpedia.org>+WHERE+{dbr:'
+            'query=SELECT+?dob+FROM+<http://dbpedia.org>+WHERE+{dbr:'
             + name_query
             + '+dbp:birthDate+?dob+.+}+LIMIT+1'
         )
@@ -132,7 +130,7 @@ class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
         """
         name_query = person.replace(' ', '_')
         url_query = self.common_url + (
-            'SELECT+?name+FROM+<http://dbpedia.org>+WHERE+{dbr:' + name_query
+            'query=SELECT+?name+FROM+<http://dbpedia.org>+WHERE+{dbr:' + name_query
             + '+?p+?name+.+dbr:' + name_query
             + '+?p+?name+.+FILTER+(?p+IN+(dbp:birthname,+dbp:birthName)+)}+LIMIT+1'
         )
