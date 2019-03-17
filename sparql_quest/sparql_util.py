@@ -26,7 +26,7 @@ from dateutil.relativedelta import relativedelta
 
 class sparql_util():  # pylint: disable=invalid-name,too-few-public-methods
     """
-    Tool for running indexers over a genome FASTA file
+    Module for asking the birth name or age of a person in DBpedia.org
     """
 
     def __init__(self):
