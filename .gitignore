@@ -1,0 +1,11 @@
+.python-version
+*.pyc
+env
+env/*
+*~
+*.DS_Store
+*_build*
+.eggs*
+*.egg-info*
+.cache
+.pytest_cache
