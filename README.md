@@ -17,7 +17,7 @@ Installation
 Directly from GitHub:
 
 ```
-git clone https://github.com/markmcdowall/sparql_quest.git
+git clone https://github.com/markmcdowall/sparql-quest.git
 
 cd sparql-quest
 ```
