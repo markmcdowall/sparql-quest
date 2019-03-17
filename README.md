@@ -19,7 +19,7 @@ Directly from GitHub:
 ```
 git clone https://github.com/markmcdowall/sparql_quest.git
 
-cd sparl_quest
+cd sparql-quest
 ```
 
 Create the Python environment
